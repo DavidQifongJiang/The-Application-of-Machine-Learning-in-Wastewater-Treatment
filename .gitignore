@@ -3,5 +3,3 @@ __pycache__/
 *.pkl
 catboost_info/
 lucifer_ml_info/
-*.csv
-*.xlsx
