@@ -1,0 +1,1 @@
+A research project exploring how machine learning can optimize wastewater treatment efficiency through microbiome classification, predictive modeling, and explainable AI (SHAP) analysis. Includes reusable code for preprocessing, model evaluation, and visualization across 21 ML models.
