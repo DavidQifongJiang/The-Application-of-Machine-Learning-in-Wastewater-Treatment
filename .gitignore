@@ -1,0 +1,7 @@
+__pycache__/
+.ipynb_checkpoints/
+*.pkl
+catboost_info/
+lucifer_ml_info/
+*.csv
+*.xlsx
