@@ -1,5 +1,13 @@
 __pycache__/
 .ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
 *.pkl
 catboost_info/
 lucifer_ml_info/
+outputs/
+reports/

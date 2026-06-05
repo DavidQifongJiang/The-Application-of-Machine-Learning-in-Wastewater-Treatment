@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wastewater-ml"
+version = "0.1.0"
+description = "Machine-learning pipelines for wastewater treatment microbiome classification and efficiency prediction."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "David Jiang" }]
+dependencies = [
+    "catboost",
+    "colorama",
+    "imbalanced-learn",
+    "ipython",
+    "joblib",
+    "lightgbm",
+    "matplotlib",
+    "numpy",
+    "openpyxl",
+    "optuna",
+    "pandas",
+    "scikit-learn",
+    "scipy",
+    "seaborn",
+    "shap",
+    "xgboost",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

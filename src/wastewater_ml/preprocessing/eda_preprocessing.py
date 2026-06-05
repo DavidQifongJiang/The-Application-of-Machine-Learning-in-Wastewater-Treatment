@@ -10,9 +10,7 @@ from IPython.display import display
 from scipy.special import boxcox1p
 from scipy.stats import norm, probplot, skew
 
-import sys
-sys.path.append(r"C:\Users\Ericd\OneDrive\Desktop\wudimoxing")
-from wudi_best import intro
+from wastewater_ml.config.model_registry import intro
 
 
 class Preprocess:
@@ -200,7 +198,7 @@ class Preprocess:
 
     def preprocess(self):
 
-        display(self.__datasetdescribe().T.style.bar(
+        display(self.__dataset.describe().T.style.bar(
             subset=['mean'],
             color='#606ff2').background_gradient(
             subset=['std'], cmap='PuBu').background_gradient(subset=['50%'], cmap='PuBu'))

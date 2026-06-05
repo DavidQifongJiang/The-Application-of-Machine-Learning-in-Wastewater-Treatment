@@ -1,8 +1,6 @@
 from sklearn.model_selection import cross_val_score
 import scipy
-import sys
-sys.path.append(r"C:\Users\Ericd\OneDrive\Desktop\wudimoxing")
-from wudi_best import *
+from wastewater_ml.config.model_registry import *
 from colorama import Fore
 
 

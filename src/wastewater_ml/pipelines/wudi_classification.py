@@ -6,22 +6,19 @@
 
 import copy
 import os
-from re import S
 import time
 import warnings
-import sys
-sys.path.append(r"C:\Users\Ericd\OneDrive\Desktop\wudimoxing")
 import numpy as np
 import optuna
 import pandas as pd
 from IPython.display import display
 from joblib import dump, load
-from wudi_pic import Best
-from wudi_best import *
-from wudi_predictor import classification_predictor
-from wudi_preprocessor import PreProcesser
-from wudi_model_tuner import wudimodel_tuner
-from wudi_validator import *
+from wastewater_ml.evaluation.best_model import Best
+from wastewater_ml.config.model_registry import *
+from wastewater_ml.models.wudi_predictor import classification_predictor
+from wastewater_ml.preprocessing.tabular_preprocessor import PreProcesser
+from wastewater_ml.tuning.wudi_model_tuner import wudimodel_tuner
+from wastewater_ml.evaluation.validation import *
 from optuna.samplers._tpe.sampler import TPESampler
 from sklearn.metrics import accuracy_score
 from colorama import Fore
@@ -637,11 +634,11 @@ class Classification:
                 "[Error] This method is only applicable on single predictor"
             )
         if not extensive:
-            self.preprocesspermutational_feature_imp(
+            self.preprocess.permutational_feature_imp(
                 self.features, self.X_train, self.y_train, model=self.classifier
             )
         if extensive:
-            self.preprocessshap_feature_imp(
+            self.preprocess.shap_feature_imp(
                 self.features, self.X_train, model=self.classifier, *args, **kwargs
             )
 

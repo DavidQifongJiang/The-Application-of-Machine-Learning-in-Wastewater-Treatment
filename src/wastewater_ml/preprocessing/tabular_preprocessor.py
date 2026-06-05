@@ -6,9 +6,7 @@ import seaborn as sns
 import shap
 from imblearn.over_sampling import SMOTE
 
-import sys
-sys.path.append(r"C:\Users\Ericd\OneDrive\Desktop\wudimoxing")
-from wudi_best import *
+from wastewater_ml.config.model_registry import *
 from sklearn.compose import ColumnTransformer
 from sklearn.decomposition import PCA, KernelPCA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA

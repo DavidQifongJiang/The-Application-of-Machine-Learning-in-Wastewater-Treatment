@@ -1,13 +1,10 @@
-from tkinter import N
 from catboost import CatBoostClassifier, CatBoostRegressor
 from colorama import Fore
 from lightgbm import LGBMClassifier, LGBMRegressor
-import sys
-sys.path.append(r"C:\Users\Ericd\OneDrive\Desktop\wudimoxing")
-from wudi_classification_objectives import (
+from wastewater_ml.models.wudi_classification_objectives import (
     ClassificationObjectives,
 )
-from wudi_regression_objectives import (
+from wastewater_ml.models.wudi_regression_objectives import (
     RegressionObjectives,
 )
 

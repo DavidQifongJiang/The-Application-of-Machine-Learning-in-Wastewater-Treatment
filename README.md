@@ -2,11 +2,10 @@
 
 # The Application of Machine Learning in Wastewater Treatment
 
-### Interpretable, reproducible machine learning workflows for wastewater-treatment analysis
+### Interpretable, reusable machine-learning workflows for wastewater-treatment analysis
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)
-[![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Tabular%20ML-orange)](#)
-[![XGBoost](https://img.shields.io/badge/XGBoost-Ensemble-success)](#results)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
+[![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Tabular%20ML-orange)](#supported-models)
 [![CatBoost](https://img.shields.io/badge/CatBoost-Top%20Performer-brightgreen)](#results)
 [![Status](https://img.shields.io/badge/Status-Research%20Project-informational)](#)
 
@@ -16,88 +15,69 @@
 
 ## Overview
 
-This project explores how machine learning can support **wastewater-treatment analysis** through:
+This project explores how machine learning can support wastewater-treatment analysis through microbiome-informed prediction, reusable tabular ML pipelines, model benchmarking, hyperparameter tuning, and interpretable outputs.
 
-- microbiome-informed prediction,
-- reusable tabular ML pipelines,
-- model benchmarking across classical and ensemble methods,
-- and interpretable outputs that are more useful for scientific research.
+The original work started as exploratory scientific notebooks. The current repository reorganizes the reusable pieces into a Python package for preprocessing, training, tuning, evaluation, and analysis.
 
-Instead of keeping everything inside ad hoc notebooks, this repository organizes the workflow into a reusable Python package for **preprocessing**, **training**, **tuning**, **evaluation**, and **analysis**.
+## Why This Project Matters
 
-## Why this project matters
-
-Wastewater treatment is a complex biological and operational system. Subtle changes in microbial composition, chemical conditions, or treatment parameters can affect performance in ways that are difficult to model manually.
+Wastewater treatment is a complex biological and operational system. Subtle changes in microbial composition, chemical conditions, and treatment parameters can affect performance in ways that are difficult to model manually.
 
 Machine learning helps by:
 
-- identifying nonlinear relationships in tabular biological data,
-- improving predictive performance over simple baselines,
-- standardizing experimentation across many model families,
-- and supporting interpretable analysis to guide scientific understanding.
+- identifying nonlinear relationships in tabular biological data
+- standardizing experiments across many model families
+- improving predictive performance over simple baselines
+- supporting feature-importance and SHAP-style interpretability
 
-## Key highlights
+## Key Highlights
 
-- Built a **modular Python codebase** under `src/` rather than relying only on notebooks.
-- Benchmarked **15+ regression models** in a unified workflow.
-- Achieved strongest reported performance with **CatBoost**, followed closely by **Extra Trees**, **XGBoost**, and **LightGBM**.
-- Designed the repo to support both **research experimentation** and **cleaner reproducibility**.
+- Reorganized research notebooks into a modular `src/` Python package.
+- Supports classification and regression workflows for wastewater and microbiome-derived features.
+- Benchmarks classical ML, tree ensembles, boosted trees, and neural baselines.
+- Includes Optuna-based hyperparameter tuning and K-fold validation helpers.
+- Preserves original data and notebooks for research provenance.
+- Adds package metadata, smoke tests, documentation, and a quickstart example.
 
-## Repository structure
+## Repository Layout
 
 ```text
 .
-├── data/                       # datasets used in experiments
-├── notebooks/                  # research notebooks and experiment iterations
-├── src/
-│   └── wastewater_ml/
-│       ├── config/             # configuration helpers
-│       ├── evaluation/         # scoring and analysis utilities
-│       ├── models/             # model definitions / wrappers
-│       ├── pipelines/          # end-to-end ML workflows
-│       ├── preprocessing/      # tabular preprocessing logic
-│       └── tuning/             # hyperparameter search utilities
-├── Change rate(Class).ipynb
-└── README.md
+├── data/                 # Original and derived wastewater datasets
+├── docs/                 # Architecture, data notes, and model card
+├── examples/             # Minimal package usage examples
+├── figures/              # Generated figures and plots
+├── notebooks/            # Original exploratory research notebooks
+├── src/wastewater_ml/    # Reusable Python package
+└── tests/                # Lightweight smoke tests
 ```
 
-## Workflow at a glance
+## Workflow
 
 ```mermaid
 flowchart LR
-    A[Raw Wastewater Data] --> B[Preprocessing]
-    B --> C[Feature Engineering / Cleaning]
-    C --> D[Model Training]
-    D --> E[Hyperparameter Tuning]
-    E --> F[Evaluation]
-    F --> G[Interpretability / Analysis]
+    A["Wastewater plant data"] --> C["Feature engineering"]
+    B["Microbiome taxonomy features"] --> C
+    C --> D["Encoding, scaling, SMOTE, PCA/LDA"]
+    D --> E["Classification models"]
+    D --> F["Regression models"]
+    E --> G["Cross-validation"]
+    F --> G
+    G --> H["Optuna tuning"]
+    H --> I["Best model + feature importance"]
 ```
 
-## Models benchmarked
+## Supported Models
 
-This repository currently benchmarks a broad range of regression models, including:
+Classification includes logistic regression, SGD, perceptron, passive aggressive, ridge classifier, SVM, KNN, decision tree, Naive Bayes, random forest, gradient boosting, AdaBoost, bagging, extra trees, LightGBM, CatBoost, XGBoost, and MLP.
 
-- Linear Regression
-- SGD Regressor
-- Elastic Net
-- Bayesian Ridge
-- Support Vector Regressor
-- K-Neighbors Regressor
-- Decision Tree Regressor
-- Random Forest Regressor
-- Gradient Boosting Regressor
-- AdaBoost Regressor
-- Bagging Regressor
-- Extra Trees Regressor
-- LightGBM Regressor
-- XGBoost Regressor
-- CatBoost Regressor
+Regression includes linear regression, SGD regressor, kernel ridge, elastic net, Bayesian ridge, SVR, KNN regressor, decision tree, random forest, gradient boosting, AdaBoost, bagging, extra trees, LightGBM, XGBoost, CatBoost, and MLP.
 
 ## Results
 
-### Top reported models
+### Top Reported Regression Models
 
-| Rank | Model | Reported R² | MAE | RMSE |
+| Rank | Model | Reported R2 | MAE | RMSE |
 |---|---|---:|---:|---:|
 | 1 | CatBoost Regressor | 95.0509 | 0.005713 | 0.011042 |
 | 2 | Extra Trees Regressor | 91.9467 | 0.004255 | 0.014095 |
@@ -105,87 +85,54 @@ This repository currently benchmarks a broad range of regression models, includi
 | 4 | LightGBM Regressor | 88.7129 | 0.008086 | 0.016687 |
 | 5 | Gradient Boosting Regressor | 86.0720 | 0.010640 | 0.018536 |
 
-### Benchmark takeaway
+The strongest reported models were tree-based ensembles, which suggests the wastewater target relationships are nonlinear and better captured by boosted or bagged tree methods than by simple linear baselines.
 
-The strongest models were **tree-based ensemble methods**, which substantially outperformed simpler linear baselines. This suggests the wastewater target relationships are likely **nonlinear**, making ensemble approaches better suited for the problem.
+> Note: the notebook output reports R2 on a percentage-like scale. Before using these numbers in a paper or resume, convert them to a standard format if needed, for example `R2 = 0.9505` instead of `95.0509`.
 
-> Note: the current notebook output appears to report R² on a percentage-like scale. For final public presentation, it is cleaner to convert this to the standard form, for example `R² = 0.9505` instead of `95.0505`, if that matches your implementation.
-
-## What this repo demonstrates
-
-This project is valuable beyond just model accuracy. It shows:
-
-- the ability to turn research experimentation into **structured code**,
-- experience comparing many models under a shared evaluation pipeline,
-- comfort working on a **domain-specific scientific ML problem**,
-- and attention to both **predictive performance** and **interpretability**.
-
-## Quick start
-
-### 1) Clone the repository
-
-```bash
-git clone git@github.com:DavidQifongJiang/The-Application-of-Machine-Learning-in-Wastewater-Treatment.git
-cd The-Application-of-Machine-Learning-in-Wastewater-Treatment
-```
-
-### 2) Create a virtual environment
+## Quick Start
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate
-# On Windows PowerShell: .venv\Scripts\activate
+.venv\Scripts\activate
+pip install -e ".[dev]"
+pytest
 ```
 
-### 3) Install dependencies
+Example:
 
-```bash
-pip install -r requirements.txt
+```python
+import pandas as pd
+from wastewater_ml.pipelines.wudi_regression import Regression
+
+features = pd.read_csv("data/data_features_Class.csv")
+target = features.pop("target_column")
+
+model = Regression(predictor=["rfr"], tune=True, optuna_n_trials=50)
+model.fit(features, target)
+print(model.result())
 ```
 
-If `requirements.txt` is not included yet, install the packages used in your notebooks and export them before sharing the final version of the repo.
+## Documentation
 
-### 4) Run the notebooks
+- [Architecture](docs/ARCHITECTURE.md)
+- [Data Notes](docs/DATA.md)
+- [Model Card](docs/MODEL_CARD.md)
 
-```bash
-jupyter notebook
-```
+## What This Repo Demonstrates
 
-## Suggested figures to add
+This project is strongest as a research-to-engineering story:
 
-To make this repository more visually compelling, add an `assets/` folder and include:
+> I converted exploratory scientific ML work into a maintainable package with reusable preprocessing, model-selection infrastructure, tuning utilities, validation helpers, tests, and documentation that another engineer could clone and review.
 
-- a **model comparison bar chart**,
-- a **feature importance or SHAP plot**,
-- and a **prediction vs. actual** or **residual** plot.
+That is stronger than simply saying "I trained models." It shows domain learning, ML experimentation, code organization, and reproducibility instincts.
 
-Example placeholders:
+## Current Limitations
 
-```md
-![Model Comparison](assets/model_comparison.png)
-![Feature Importance](assets/feature_importance.png)
-![Prediction vs Actual](assets/pred_vs_actual.png)
-```
+- Notebook outputs are experimental records, not a fully locked benchmark suite.
+- A final public benchmark should pin dependency versions and rerun the canonical notebook/script.
+- Production use would need stricter dataset versioning, leakage checks, and experiment tracking.
+- Some older notebook text still reflects the original exploratory phase.
 
-## Future improvements
+## Resume-Ready Summary
 
-- Add a clean `requirements.txt` or `environment.yml`
-- Add one canonical notebook such as `final_results.ipynb`
-- Add a short dataset description and target definition
-- Rename any regression metric labels that currently use classification terms like `accuracy`
-- Expand the interpretability section with domain findings
-- Add a license for a more complete open-source presentation
-
-## Resume-ready summary
-
-Built a reusable machine learning pipeline for wastewater-treatment research, structuring preprocessing, model training, hyperparameter tuning, and evaluation into a modular Python codebase and benchmarking 15+ regression models on microbiome-related tabular data.
-
-## Acknowledgments
-
-This repository reflects research-oriented work in applied machine learning for environmental and biological data analysis.
-
----
-
-## Contact
-
-If you'd like to discuss the project, methodology, or potential collaboration, feel free to connect through GitHub or LinkedIn.
+Built a reusable machine-learning pipeline for wastewater-treatment research, structuring preprocessing, model training, hyperparameter tuning, and evaluation into a modular Python codebase and benchmarking 15+ regression models on microbiome-related tabular data, with CatBoost achieving the strongest reported performance.

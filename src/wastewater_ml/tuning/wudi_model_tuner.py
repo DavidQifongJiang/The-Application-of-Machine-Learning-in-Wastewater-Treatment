@@ -1,9 +1,7 @@
 import traceback
-import sys
-sys.path.append(r"C:\Users\Ericd\OneDrive\Desktop\wudimoxing")
-from wudi_predictor import classification_predictor
-from wudi_predictor import regression_predictor
-from wudi_optuna_base import Tuner
+from wastewater_ml.models.wudi_predictor import classification_predictor
+from wastewater_ml.models.wudi_predictor import regression_predictor
+from wastewater_ml.tuning.wudi_optuna_base import Tuner
 from colorama import Fore
 
 

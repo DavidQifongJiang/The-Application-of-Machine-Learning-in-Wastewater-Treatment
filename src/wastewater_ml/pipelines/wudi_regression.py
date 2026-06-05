@@ -9,15 +9,13 @@ import optuna
 import pandas as pd
 from colorama import Fore
 from IPython.display import display
-import sys
-sys.path.append(r"C:\Users\Ericd\OneDrive\Desktop\wudimoxing")
-from wudi_pic import Best
-from wudi_best import *
-from wudi_predictor import classification_predictor
-from wudi_predictor import regression_predictor
-from wudi_preprocessor import PreProcesser
-from wudi_model_tuner import wudimodel_tuner
-from wudi_validator import *
+from wastewater_ml.evaluation.best_model import Best
+from wastewater_ml.config.model_registry import *
+from wastewater_ml.models.wudi_predictor import classification_predictor
+from wastewater_ml.models.wudi_predictor import regression_predictor
+from wastewater_ml.preprocessing.tabular_preprocessor import PreProcesser
+from wastewater_ml.tuning.wudi_model_tuner import wudimodel_tuner
+from wastewater_ml.evaluation.validation import *
 from optuna.samplers._tpe.sampler import TPESampler
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from colorama import Fore
@@ -143,7 +141,7 @@ class Regression:
 
             from luciferml.supervised.regression import Regression
 
-            dataset = pd.read_excel('examples\Folds5x2_pp.xlsx')
+            dataset = pd.read_excel("examples/Folds5x2_pp.xlsx")
 
             X = dataset.iloc[:, :-1]
 

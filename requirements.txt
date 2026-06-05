@@ -1,0 +1,17 @@
+catboost
+colorama
+imbalanced-learn
+ipython
+joblib
+lightgbm
+matplotlib
+numpy
+openpyxl
+optuna
+pandas
+pytest
+scikit-learn
+scipy
+seaborn
+shap
+xgboost
